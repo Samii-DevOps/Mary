@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Mary</title>
+  <style>
+    body {
+      margin: 0;
+      background: #fff0f5;
+      font-family: 'Segoe UI', cursive, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: black;
+      text-shadow: 
+        0 0 5px #ccc,
+        0 0 10px #999,
+        0 0 20px #666;
+      animation: glitter 1.5s infinite alternate;
+      margin-top: 80px;
+    }
+
+    p {
+      font-size: 1.5em;
+      color: red;
+      margin-top: 20px;
+    }
+
+    @keyframes glitter {
+      from {
+        text-shadow: 
+          0 0 5px #ccc,
+          0 0 10px #999;
+      }
+      to {
+        text-shadow: 
+          0 0 10px #666,
+          0 0 20px #333;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      transform: rotate(45deg);
+      animation: float 5s infinite ease-in-out;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🖤 Mary 🖤</h1>
+  <p>You light up life like glitter on stardust ✨</p>
+  <p>Wishing you a good day and a happy smile 😊</p>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      const color = Math.random() > 0.5 ? 'black' : 'red';
+      heart.style.background = color;
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+
+      heart.style.setProperty('--heart-color', color);
+      heart.style.setProperty('--heart-shadow', color);
+
+      heart.style.position = 'absolute';
+
+      heart.style.setProperty('--before-bg', color);
+      heart.style.setProperty('--after-bg', color);
+
+      heart.style.setProperty('background', color);
+      heart.style.setProperty('--before-bg', color);
+      heart.style.setProperty('--after-bg', color);
+
+      const before = document.createElement('div');
+      before.style.background = color;
+      before.style.borderRadius = '50%';
+      before.style.width = '20px';
+      before.style.height = '20px';
+      before.style.position = 'absolute';
+      before.style.top = '-10px';
+      before.style.left = '0';
+      heart.appendChild(before);
+
+      const after = document.createElement('div');
+      after.style.background = color;
+      after.style.borderRadius = '50%';
+      after.style.width = '20px';
+      after.style.height = '20px';
+      after.style.position = 'absolute';
+      after.style.left = '-10px';
+      after.style.top = '0';
+      heart.appendChild(after);
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
